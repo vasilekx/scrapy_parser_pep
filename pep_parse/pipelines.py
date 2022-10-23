@@ -20,17 +20,15 @@ class PepParsePipeline:
 
     def close_spider(self, spider):
         with open(
-                self.result_dir / FILENAME.format(
-                    date=dt.datetime.now().strftime(DATETIME_FORMAT)
-                ),
-                mode='w',
-                encoding='utf-8'
+            self.result_dir / FILENAME.format(
+                date=dt.datetime.now().strftime(DATETIME_FORMAT)
+            ),
+            mode='w',
+            encoding='utf-8'
         ) as csvfile:
-            writer = csv.writer(
-                csvfile,
-                quoting=csv.QUOTE_MINIMAL
-            )
-            writer.writerows(
+            csv.writer(
+                csvfile, dialect='unix', quoting=csv.QUOTE_MINIMAL
+            ).writerows(
                 [
                     ('Статус', 'Количество'),
                     *self.count_statuses.items(),

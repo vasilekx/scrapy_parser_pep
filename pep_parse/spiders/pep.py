@@ -1,7 +1,8 @@
-import scrapy
-from scrapy.exceptions import DropItem
+import re
 
-from pep_parse.constants import EN_DASH, EXPECTED_STATUS, STATUS_PEP_NOT_FOUND
+import scrapy
+
+from pep_parse.constants import EXPECTED_STATUS, PATTERN
 from pep_parse.items import PepParseItem
 
 
@@ -19,20 +20,16 @@ class PepSpider(scrapy.Spider):
             )
 
     def parse_pep(self, response):
-        title = response.css('h1.page-title::text').get().split(EN_DASH)
+        title_match = re.search(
+            PATTERN,
+            response.css('h1.page-title::text').get()
+        )
         status = response.css('dt:contains("Status") + dd::text').get()
         if status in EXPECTED_STATUS:
             yield PepParseItem(
                 {
-                    'number': title[0][3:].strip(),
-                    'name': title[1].strip(),
+                    'number': title_match.group('number'),
+                    'name': title_match.group('name'),
                     'status': status
                 }
-            )
-        else:
-            raise DropItem(
-                STATUS_PEP_NOT_FOUND.format(
-                    pep_link=response.url,
-                    card_status=status,
-                )
             )
