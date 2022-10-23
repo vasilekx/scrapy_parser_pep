@@ -2,15 +2,8 @@ import csv
 import datetime as dt
 from collections import defaultdict
 
-from scrapy.exceptions import DropItem
-
 from pep_parse.constants import (BASE_DIR, DATETIME_FORMAT, FILENAME,
                                  RESULTS_DIR_NAME)
-
-
-# BASE_DIR = Path(__file__).parent.parent
-# DATETIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
-# FILENAME = 'status_summary_{date}.csv'
 
 
 class PepParsePipeline:
@@ -26,7 +19,6 @@ class PepParsePipeline:
         return item
 
     def close_spider(self, spider):
-        # filename = format(dt.datetime.now().strftime(DATETIME_FORMAT))
         with open(
                 self.result_dir / FILENAME.format(
                     date=dt.datetime.now().strftime(DATETIME_FORMAT)
@@ -34,14 +26,8 @@ class PepParsePipeline:
                 mode='w',
                 encoding='utf-8'
         ) as csvfile:
-            # Записываем строки в csv-файл. Колонки разделяются запятой, без пробелов.
-            # csvfile.write('Статус,Количество\n')
-            # Здесь цикл с записью данных в файл.
-            # csvfile.write(f'Total,{total}\n')
-
             writer = csv.writer(
                 csvfile,
-                # dialect=csv.unix_dialect,
                 quoting=csv.QUOTE_MINIMAL
             )
             writer.writerows(
@@ -51,4 +37,3 @@ class PepParsePipeline:
                     ('Total', sum(self.count_statuses.values()))
                 ]
             )
-
