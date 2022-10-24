@@ -27,7 +27,7 @@ class PepParsePipeline:
             encoding='utf-8'
         ) as csvfile:
             csv.writer(
-                csvfile, dialect='unix', quoting=csv.QUOTE_MINIMAL
+                csvfile, dialect=csv.unix_dialect, quoting=csv.QUOTE_MINIMAL
             ).writerows(
                 [
                     ('Статус', 'Количество'),
