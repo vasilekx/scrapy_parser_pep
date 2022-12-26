@@ -1,20 +1,55 @@
 # Проект асинхронного парсера PEP на Scrapy
 
+## Описание
+Парсер документов PEP, основанный на фреймворке Scrapy. Парсер создает два файла отчета. Файл, содержащий список PEP с номером документа, заголовком и статусом, а также файл сводной статистики по количеству документов в различных статусах.
+
 ### Функции парсера:
 * Сброр всех PEP (номер, название и статус);
 * Подсчёт количества статусов документов;
 * Сохранение результатов работы парсинга в csv-формате.
 
 ### Порядок действия для запуска парсера
-- Клонировать репозиторий:
-[vasilekx/scrapy_parser_pep](https://github.com/vasilekx/scrapy_parser_pep.git)
 
-- Подготовка виртульного окружения и установка библиотек:
+Клонировать репозиторий и перейти в папку в проектом:
+
 ```bash
-cd scrapy_parser_pep && python3 -m venv venv && source env/bin/activate && python3 -m pip install --upgrade pip && pip install -r requirements.txt
+git clone https://github.com/vasilekx/scrapy_parser_pep.git)
 ```
 
-- Запуск парсера:
+```bash
+cd cat_charity_fund
+```
+
+Создать и активировать виртуальное окружение:
+
+```bash
+python3 -m venv venv
+```
+
+* Если у вас Linux/MacOS
+
+    ```bash
+    source venv/bin/activate
+    ```
+
+* Если у вас windows
+
+    ```bash
+    source venv/scripts/activate
+    ```
+
+Установить зависимости из файла requirements.txt:
+
+```bash
+python3 -m pip install --upgrade pip
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+Запуск парсера:
+
 ```bash
 scrapy crawl pep 
 ```
