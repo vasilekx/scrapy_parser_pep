@@ -13,7 +13,7 @@
 Клонировать репозиторий и перейти в папку в проектом:
 
 ```bash
-git clone https://github.com/vasilekx/scrapy_parser_pep.git)
+git clone https://github.com/vasilekx/scrapy_parser_pep.git
 ```
 
 ```bash
