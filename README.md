@@ -8,7 +8,14 @@
 * Подсчёт количества статусов документов;
 * Сохранение результатов работы парсинга в csv-формате.
 
-### Порядок действия для запуска парсера
+## Применяемые технологи
+
+[![Python](https://img.shields.io/badge/Python-3.9-blue?style=flat-square&logo=Python&logoColor=3776AB&labelColor=d0d0d0)](https://www.python.org/)
+[![Scrapy](https://img.shields.io/badge/Scrapy-2.5.1-blue?style=flat-square&logoColor=3776AB&labelColor=d0d0d0)](https://scrapy.org/)
+
+---
+
+## Порядок действия для запуска парсера
 
 Клонировать репозиторий и перейти в папку в проектом:
 
